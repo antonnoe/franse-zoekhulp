@@ -1,0 +1,26 @@
+name: INSEE-dichtheid vernieuwen
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install openpyxl==3.1.5
+      - name: Officieel werkboek downloaden
+        run: curl --fail --location --retry 2 --max-time 180 'https://www.insee.fr/fr/statistiques/fichier/8571524/fichier_diffusion_2026.xlsx' -o "$RUNNER_TEMP/density.xlsx"
+      - name: Schema controleren en snapshot maken
+        run: python scripts/import-density.py "$RUNNER_TEMP/density.xlsx"
+      - name: Snapshot bewaren
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/density.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Refresh official INSEE density snapshot'
+          git push

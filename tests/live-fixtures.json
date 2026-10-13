@@ -1,0 +1,14 @@
+{
+  "testedDate": "2026-10-12",
+  "method": "Selected filters in each portal's public interface and reopened the resulting URL in a fresh browser tab. Recorded filter state only; no listings collected.",
+  "profile": { "location": "ceret", "transaction": "buy", "propertyType": "house", "priceMax": 250000, "surfaceMin": 100 },
+  "fixtures": [
+    { "id": "leboncoin", "url": "https://www.leboncoin.fr/recherche?category=9&locations=C%C3%A9ret_66400__42.4851_2.74987_5000&square=100-max&price=min-250000&real_estate_type=1", "freshTabVerified": true, "visibleFilters": ["Céret (66400)", "Maison", "250 000 € max", "Surface habitable : min 100 m²"] },
+    { "id": "seloger", "url": "https://www.seloger.com/classified-search?distributionTypes=Buy&estateTypes=House&locations=AD08FR27591&method=form&priceMax=250000&spaceMin=100", "freshTabVerified": true, "visibleFilters": ["Céret, Occitanie", "Acheter Maison", "Max 250k €", "Min 100 m²"], "notes": ["May display separate nearby suggestions. AD08FR27591 is a provider-specific place ID."] },
+    { "id": "bienici", "url": "https://www.bienici.com/recherche/achat/ceret-66400/maisonvilla?prix-max=250000&surface-min=100", "freshTabVerified": true, "visibleFilters": ["Maison à vendre à Céret (66400)", "Acheter", "250k € max", "100 m² min"] },
+    { "id": "pap", "url": "https://www.pap.fr/annonce/vente-maisons-ceret-66400-g34362-jusqu-a-250000-euros-a-partir-de-100-m2", "freshTabVerified": true, "visibleFilters": ["Maison", "Céret (66400)", "Jusqu'à 250.000 €", "À partir de 100 m²"], "notes": ["No exact results for this fixture. Separate wider suggestions and advertising still shown."] },
+    { "id": "figaro", "url": "https://immobilier.lefigaro.fr/annonces/immobilier-vente-maison-ceret+66400.html?priceMax=250000&areaMin=100", "freshTabVerified": true, "visibleFilters": ["Acheter Ceret", "Maison", "250 K € max.", "100 m2 min."] },
+    { "id": "ouest", "url": "https://www.ouestfrance-immo.com/acheter/maison/ceret-66-66400/?prix=0_250000&surface=100_0", "freshTabVerified": true, "visibleFilters": ["Céret", "Vente maison", "Prix maximum 250000", "Surface minimum 100"], "notes": ["Portal automatically expanded the search radius to 20 km."] }
+  ],
+  "scope": "Only houses for purchase in Céret, maximum 250000 EUR and minimum 100 m² were live-tested. Other values use the same parameter mapping but have not been live-tested separately. Technical verification does not provide legal clearance."
+}
