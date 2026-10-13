@@ -19,7 +19,18 @@ function Link({ href, children, primary = false }: { href: string; children: Rea
   return <a className={primary ? "button" : "textlink"} href={href} {...external}>{children}<span aria-hidden="true"> ↗</span></a>;
 }
 function NumberField({ label, value, onChange, min = 0, max = 100000000, hint }: { label: string; value: number | null; onChange: (n: number | null) => void; min?: number; max?: number; hint?: string }) {
-  return <Field label={label} hint={hint}><input type="number" min={min} max={max} value={value ?? ""} onChange={e => onChange(e.target.value === "" ? null : Number(e.target.value))} /></Field>;
+  const [draft, setDraft] = useState<string | null>(null);
+  return <Field label={label} hint={hint}><input type="number" min={min} max={max} value={draft ?? value ?? ""}
+    onFocus={() => setDraft(value === null ? "" : String(value))}
+    onChange={e => {
+      const text = e.target.value;
+      setDraft(text);
+      if (text !== "" && Number.isFinite(e.target.valueAsNumber)) onChange(e.target.valueAsNumber);
+    }}
+    onBlur={() => {
+      if (draft === "") onChange(null);
+      setDraft(null);
+    }} /></Field>;
 }
 
 export default function Woonplan() {
