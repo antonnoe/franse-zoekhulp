@@ -1,5 +1,6 @@
 import { z } from "zod";
 import densityData from "@/data/density.json";
+import regionData from "@/data/region-data.json";
 import { placeSchema, type Place } from "./model";
 const geoRecord = z.object({ nom: z.string(), code: z.string(), codesPostaux: z.array(z.string()).optional(),
   population: z.number().nullable().optional(), centre: z.object({ coordinates: z.tuple([z.number(), z.number()]) }),
@@ -13,11 +14,12 @@ export function normalizePlaces(data: unknown): Place[] {
   const rows = z.array(geoRecord).parse(data);
   const densities = densityData.entries as Record<string, number>;
   const labels = ("labels" in densityData ? densityData.labels : {}) as Record<string, string>;
+  const periurban = regionData.periurban as Record<string, boolean>;
   return rows.map(row => {
     const d = densities[row.code];
     return placeSchema.parse({ code: row.code, name: row.nom, postcode: row.codesPostaux?.[0] || "", department: row.departement?.nom || "",
       lon: row.centre.coordinates[0], lat: row.centre.coordinates[1], population: row.population ?? null,
-      density: d ?? null, densityLabel: d ? labels[String(d)] ?? null : null });
+      density: d ?? null, densityLabel: d ? labels[String(d)] ?? null : null, periurban: periurban[row.code] ?? null });
   });
 }
 export const sourceInfo = { name: "API Géo / INSEE", url: "https://geo.api.gouv.fr/decoupage-administratif/communes", densityUrl: densityData.url, densityDate: densityData.updated, densityImported: densityData.imported };

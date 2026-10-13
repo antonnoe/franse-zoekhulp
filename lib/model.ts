@@ -36,9 +36,17 @@ export const placeSchema = z.object({
   postcode: z.string().max(5), department: z.string().max(160),
   lon: z.number().min(-180).max(180), lat: z.number().min(-90).max(90),
   population: z.number().nonnegative().nullable(), density: z.number().int().min(1).max(7).nullable(),
-  densityLabel: z.string().max(200).nullable()
+  densityLabel: z.string().max(200).nullable(),
+  periurban: z.boolean().nullable().optional()
 });
 export type Place = z.infer<typeof placeSchema>;
+export const searchAreaSchema = z.object({
+  id: z.string().min(1).max(60), center: placeSchema, radiusKm: z.number().min(0).max(100),
+  reasons: z.array(z.string().max(500)).max(10), warnings: z.array(z.string().max(500)).max(10),
+  unknowns: z.array(z.string().max(500)).max(15), profileKey: z.string().max(2000),
+  sourcesDate: z.string().max(100), createdAt: z.string().datetime()
+});
+export type SearchArea = z.infer<typeof searchAreaSchema>;
 export const houseSchema = z.object({
   id: z.string().uuid(), title: z.string().max(200), url: z.string().max(2000).refine(s => !s || safeUrl(s) !== null, "Gebruik een volledige http(s)-link."),
   placeCode: z.string().max(5), address: z.string().max(300), propertyType: z.enum(propertyTypes).nullable(),
@@ -52,9 +60,9 @@ export const houseSchema = z.object({
   purchaseDone: z.array(z.string().max(100)).max(20), createdAt: z.string().datetime()
 });
 export type House = z.infer<typeof houseSchema>;
-export const planSchema = z.object({ version: z.literal(1), wishes: wishesSchema, places: z.array(placeSchema).max(20), houses: z.array(houseSchema).max(50) }).strict();
+export const planSchema = z.object({ version: z.literal(1), wishes: wishesSchema, places: z.array(placeSchema).max(20), houses: z.array(houseSchema).max(50), searchAreas: z.array(searchAreaSchema).max(20).default([]) }).strict();
 export type Plan = z.infer<typeof planSchema>;
-export function newPlan(): Plan { return { version: 1, wishes: { ...initialWishes, settlement: [...initialWishes.settlement] }, places: [], houses: [] }; }
+export function newPlan(): Plan { return { version: 1, wishes: { ...initialWishes, settlement: [...initialWishes.settlement] }, places: [], houses: [], searchAreas: [] }; }
 export function newHouse(): House {
   return { id: crypto.randomUUID(), title: "", url: "", placeCode: "", address: "", propertyType: null, price: null, area: null, land: null,
     dpe: null, feesIncluded: "onbekend", annualTax: null, hospitalMinutes: null, internet: "onbekend", internetDate: "",

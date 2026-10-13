@@ -1,0 +1,13 @@
+{
+  "testedDate": "2026-10-13",
+  "method": "Opened the generated search URL in a fresh browser tab and verified visible filters. No advertisements collected.",
+  "place": { "code": "37261", "name": "Tours", "postcode": "37000", "lon": 0.6949, "lat": 47.3943 },
+  "priceMax": 300000,
+  "surfaceMin": 120,
+  "radiusKm": 20,
+  "fixtures": [
+    { "id": "leboncoin", "url": "https://www.leboncoin.fr/recherche?category=9&locations=Tours_37000__47.3943_0.6949_5000_20000&square=120-max&price=min-300000&real_estate_type=1", "visibleFilters": ["Tours (37000) - 20 km", "Maison", "300 000 € max", "Surface habitable : min 120 m²"], "radiusVerified": true },
+    { "id": "bienici", "url": "https://www.bienici.com/recherche/achat/tours-37000/maisonvilla?prix-max=300000&surface-min=120", "visibleFilters": ["Maison à vendre à Tours (37000)", "300k € max", "120 m² min"], "radiusVerified": false }
+  ],
+  "scope": "Representative house-purchase mapping in Tours. No claim that all communes or property types were individually browser-tested. Bien'ici radius is manual. Other location/radius mappings retain explicit capability notes."
+}

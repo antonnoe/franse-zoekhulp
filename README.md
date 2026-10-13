@@ -7,6 +7,7 @@ Next.js App Router + TypeScript, voorbereid op Supabase, voor Infofrankrijk. V1.
 - Zeven verbonden stappen: plaatsverkenning, woningwensen, Zoekhulp, handmatige vergelijking, werkchecklist, aankoopvoortgang en klussen.
 - Franse gemeentezoeker via API Géo; geografische omgeving en lokale autoroutes via IGN.
 - Officiële INSEE-dichtheidsindeling voor 34.875 gemeenten, met bron, geografie en importdatum; handmatige vernieuwingsactie in GitHub Actions.
+- Regioverkenning op woonomgeving en geregistreerde dagelijkse voorzieningen (BPE 2025, 34.873 gemeenten), landelijk of rond een bewaarde plaats. Kandidaten gaan met hun straal en onderbouwing naar de Zoekhulp; zoekgebieden worden mee opgeslagen en geëxporteerd.
 - Eigen woonplan met kandidaatplaatsen, maximaal 50 woningen, oorspronkelijke advertentietekst en controles met datum.
 - Bekende en onbekende gegevens apart; harde eisen worden niet afgezwakt tot voorkeuren.
 - Zes geteste zoeklinks voor huizen in Céret, met aanpasbare vraagprijs en woonoppervlakte. Andere locaties/types: duidelijke handmatige portalzoekroute.
@@ -16,7 +17,7 @@ Next.js App Router + TypeScript, voorbereid op Supabase, voor Infofrankrijk. V1.
 
 ## Nog niet actief
 
-FINESS, BPE, DVF-aggregaties, klimaatdata en Géorisques API worden nog niet automatisch ingelezen. De route toont geen verzonnen aanbevelingen of automatische veilige regiomatches. Zie docs/beoordelingsmatrix.md en docs/koppelingen.md. NL/BE-reistijden, alle-portal geografische mappings, abonnementstoegang en AI zijn niet aangesloten. De exacte IF-checklistlink moet nog worden ingesteld.
+FINESS, DVF-aggregaties, klimaatdata en Géorisques API worden nog niet automatisch ingelezen. BPE-tellingen en periurbane classificatie zijn aangesloten voor de eerste regioverkenning. Zorgtoegang, winteropening, internet op adres en andere ontbrekende criteria worden niet als bewezen match meegeteld. Zie docs/regioverkenning.md, docs/beoordelingsmatrix.md en docs/koppelingen.md. NL/BE-reistijden, alle-portal geografische mappings, abonnementstoegang en AI zijn niet aangesloten. De exacte IF-checklistlink moet nog worden ingesteld.
 
 ## Op Vercel zetten — klikken, geen code plakken
 

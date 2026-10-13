@@ -34,10 +34,12 @@ test("all six portal links preserve the independently observed baseline", () => 
     const link = links.find(l => l.id === observed.id); assert.equal(link?.url, observed.url); assert.equal(link?.prepared, true);
   }
 });
-test("unsupported communes and property types never receive invented portal IDs", () => {
-  for (const [place, wishes] of [[{ ...ceret, code: "37261", name: "Tours" }, newPlan().wishes], [ceret, { ...newPlan().wishes, propertyType: "Ferme" as const }]] as const) {
-    for (const link of portalLinks(place, wishes)) { assert.equal(link.prepared, false); assert.equal(link.url, link.home); }
-  }
+test("portals requiring internal location IDs never receive invented IDs outside Céret", () => {
+  const links = portalLinks({ ...ceret, code: "37261", name: "Tours", postcode: "37000" }, newPlan().wishes);
+  for (const link of links.filter(l => !["leboncoin", "bienici"].includes(l.id))) { assert.equal(link.prepared, false); assert.equal(link.url, link.home); }
+  assert.equal(links.find(l => l.id === "leboncoin")?.prepared, true);
+  assert.equal(links.find(l => l.id === "bienici")?.prepared, true);
+  for (const link of portalLinks(ceret, { ...newPlan().wishes, propertyType: "Anders" })) assert.equal(link.prepared, false);
 });
 test("changed budget and area retain provider-specific place identifiers", () => {
   const links = portalLinks(ceret, { ...newPlan().wishes, budget: 500000, purchaseReserve: 30000, renovationReserve: 70000, minArea: 150 });

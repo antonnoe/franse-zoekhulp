@@ -21,7 +21,7 @@ Exacte URL nog niet vastgesteld. Stel NEXT_PUBLIC_IF_CHECKLIST_URL in op Vercel 
 
 ## Portal-links
 
-De ongewijzigde live-fixtures van 12-10-2026 staan in tests/live-fixtures.json. De zes providerlinks zijn alleen geverifieerd voor huizen in Céret. De andere woningtypes en gemeenten krijgen een gewone ingang naar de portal, met de Franse zoekomschrijving. Specifieke woningstijlen worden niet stilzwijgend vertaald naar een bewezen portalfilter. De exploratiestraal gaat nog niet mee naar portals.
+De ongewijzigde live-fixtures van 12-10-2026 staan in tests/live-fixtures.json. De oorspronkelijke zes Céret-links blijven beschikbaar. De regio-overdracht is uitgebreid met locatie/coördinaten en een afzonderlijke straal bij Leboncoin, en plaats/type/prijs/oppervlakte bij Bien'ici. Tours is op 13-10-2026 gecontroleerd. Per portal is aangegeven wat is voorbereid en wat handmatig nodig is. Specifieke woningstijlen krijgen een duidelijk gemarkeerde brede huizenzoekopdracht. Zie docs/regioverkenning.md voor de grenzen van straal- en locatiemapping.
 
 ## Supabase en IF-abonnement
 

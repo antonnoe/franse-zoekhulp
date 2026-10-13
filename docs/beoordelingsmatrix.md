@@ -6,11 +6,11 @@ V1 bevat geen AI, scraping of aankoopadvies. Wensen zijn aanpasbaar. Geen percen
 | --- | --- | --- | --- |
 | Plaats en omgeving | Gemeente, postcode, coördinaten; straal tussen gemeentecentra | API Géo | API aangesloten; uitval geeft foutmelding |
 | Stedelijk / landelijk | Officiële 7-delige gemeentelijke dichtheid | INSEE, werkboek 15-05-2026; geografie 01-01-2026 | 34.875 officiële indelingen geïmporteerd; geen afleiding uitsluitend uit inwoners of inwoners/km² |
-| Stadsrand / hybride | Beschrijven van nabijheid stedelijke kern en voorzieningen | INSEE + lokale routes | Voorkeur opgeslagen; geen gecertificeerde match |
+| Stadsrand / hybride | Periurbane indeling + geregistreerde voorzieningen binnen hemelsbrede straal tussen gemeentecentra | INSEE BPE + dichtheidsindeling | Aangesloten als verklaarbare eerste voorselectie; geen bewezen woonkwaliteit of rijtijd |
 | Ziekenhuis | Gewenste type zorg + reistijd naar een concrete instelling | FINESS Structures en Activités + IGN | FINESS-import nog niet aangesloten; handmatige woningcontrole. Instelling ≠ zorgtoegang |
 | Lokale reistijd | Autoroute tussen de gekozen gemeentecentra | IGN, documentatie 14-09-2026 | API aangesloten; zonder verkeersdrukte |
 | NL/BE bereikbaarheid | Reis vanaf exact vertrekpunt, gekozen vervoerswijze | Grensoverschrijdend route-/reissysteem | Voorkeur opgeslagen; integratie nog te kiezen |
-| Winterleven | Voorzieningen plus opening/activiteit buiten seizoen | INSEE BPE + verkenning ter plekke | Nog geen automatische BPE-import; geen ja/nee-garantie |
+| Winterleven | Voorzieningen plus opening/activiteit buiten seizoen | INSEE BPE + verkenning ter plekke | BPE-tellingen geïmporteerd; winteropening blijft onbekend |
 | Hitte | Frequentie hete dagen/nachten, periode en toekomsthorizon | DRIAS/Météo-France | Voorkeur opgeslagen; klimaatimport nog niet aangesloten |
 | Internet | Exact adres en gewenste technologie, controle met datum | Bestaande IF-internettool / ARCEP | Uitgaande link en handmatige registratie; geen automatische resultaatuitwisseling |
 | Natuurlijke risico's | Afzonderlijke typen blootstelling op adres/perceel | Géorisques | Uitgaande link en handmatige controle; API v2 niet aangesloten |
