@@ -11,7 +11,7 @@ export function assessHouse(h: House, w: Wishes): Check[] {
   if (w.minLand > 0) checks.push(numeric("land", "Perceel", h.land, n => n >= w.minLand, "Door u ingevulde perceeloppervlakte.", true));
   checks.push(numeric("hospital", "Reistijd ziekenhuis", h.hospitalMinutes, n => n <= w.hospitalMinutes, "Door u gecontroleerde reistijd; geen bewijs van beschikbare zorg.", w.hospitalPriority === "eis"));
   if (w.fibrePriority !== "niet-nodig") checks.push({ key: "internet", label: "Internet", status: h.internet === "onbekend" ? "onbekend" : h.internet === "gecontroleerd" ? "past" : "wijkt-af", note: "Uw handmatige adrescontrole. Vermeld controledatum en details in de notities.", hard: w.fibrePriority === "eis" });
-  checks.push({ key: "risks", label: "Risicocontrole", status: h.riskCheck === "onbekend" ? "onbekend" : h.riskCheck === "aandacht" ? "wijkt-af" : "past", note: "Gecontroleerd betekent dat u de controle heeft uitgevoerd; het betekent niet risicovrij.", hard: false });
+  checks.push({ key: "risks", label: "Risico’s en vervolgonderzoek", status: h.riskCheck === "aandacht" ? "wijkt-af" : "onbekend", note: "Een uitgevoerde controle geeft op zichzelf geen oordeel over geschiktheid. De risicobeoordeling blijft onbekend tot de concrete bevindingen zijn beoordeeld.", hard: false });
   return checks;
 }
 export function summary(checks: Check[]) {

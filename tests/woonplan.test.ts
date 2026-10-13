@@ -18,6 +18,10 @@ test("a failed hard requirement remains visible even if other known fields fit",
   const result = summary(assessHouse(h, w));
   assert.equal(result.hardFail, true); assert.equal(result.fits, 3);
 });
+test("an executed risk check is never treated as evidence of a safe match", () => {
+  const h = { ...newHouse(), riskCheck: "gecontroleerd" as const };
+  assert.equal(assessHouse(h, newPlan().wishes).find(c => c.key === "risks")?.status, "onbekend");
+});
 test("property budget reserves are subtracted and an impossible budget is rejected", () => {
   const w = newPlan().wishes; assert.equal(propertyBudget(w), 300000);
   assert.equal(wishesSchema.safeParse({ ...w, budget: 40000 }).success, false);
